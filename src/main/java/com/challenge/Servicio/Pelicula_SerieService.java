@@ -39,6 +39,18 @@ public class Pelicula_SerieService implements Pelicula_SerieRepository{
         
     }
 
+
+    //Actualizar Pelicula o Serie
+    public Pelicula_Serie actualizar(Pelicula_Serie pelicula_serie,Integer id){
+        Pelicula_Serie p = pelicula_serieRepository.getById(id);
+        p.setFechaDeCreacion(pelicula_serie.getFechaDeCreacion());
+        p.setImagen(pelicula_serie.getImagen());
+        p.setTitulo(pelicula_serie.getTitulo());
+        p.setCalificacion(pelicula_serie.getCalificacion());
+
+        return p;
+    }
+
     //IMPLEMENTADO
     @Override
     public List<Pelicula_Serie> findAll() {
@@ -153,10 +165,10 @@ public class Pelicula_SerieService implements Pelicula_SerieRepository{
         return false;
     }
 
+    //IMPLEMENTADO
     @Override
     public Optional<Pelicula_Serie> findById(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return pelicula_serieRepository.findById(id);
     }
 
     //IMPLEMENTADO

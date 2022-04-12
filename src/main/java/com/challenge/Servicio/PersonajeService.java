@@ -1,11 +1,15 @@
 package com.challenge.Servicio;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 import com.challenge.Personaje;
+import com.challenge.personajeDTO;
 import com.challenge.Repositorio.PersonajeRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -20,6 +24,9 @@ public class PersonajeService implements PersonajeRepository{
 
     @Autowired
     private PersonajeRepository personajeRepository;
+
+    @Autowired
+    private ObjectMapper mapper;
 
     //IMPLEMENTADO
     @Override
@@ -48,6 +55,24 @@ public class PersonajeService implements PersonajeRepository{
 
         return p;
     }
+
+    public Set<personajeDTO> buscarPersonaje(String nombre,Double peso) {
+        Set<Personaje> allPersonajes = personajeRepository.getPersonajePorNombre(nombre,peso);
+        Set<personajeDTO> allPersonajesDTO = new HashSet<>();
+        for(Personaje personaje: allPersonajes)
+            allPersonajesDTO.add(mapper.convertValue(personaje,personajeDTO.class));
+
+        return allPersonajesDTO;
+    }
+
+    /*public Set<personajeDTO> buscarPersonaje(String nombre) {
+        Set<Personaje> allPersonajes = personajeRepository.getPersonajePorNombre(nombre);
+        Set<personajeDTO> allPersonajesDTO = new HashSet<>();
+        for(Personaje personaje: allPersonajes)
+            allPersonajesDTO.add(mapper.convertValue(personaje,personajeDTO.class));
+
+        return allPersonajesDTO;
+    }*/
 
     @Override
     public List<Personaje> findAll(Sort sort) {
@@ -177,8 +202,7 @@ public class PersonajeService implements PersonajeRepository{
 
     @Override
     public Optional<Personaje> findById(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return personajeRepository.findById(id);
     }
 
     //Guardar
@@ -213,6 +237,18 @@ public class PersonajeService implements PersonajeRepository{
 
     @Override
     public <S extends Personaje> Optional<S> findOne(Example<S> example) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /*@Override
+    public Set<Personaje> getPersonajePorNombre(String nombre) {
+        // TODO Auto-generated method stub
+        return null;
+    }*/
+
+    @Override
+    public Set<Personaje> getPersonajePorNombre(String nombre, Double peso) {
         // TODO Auto-generated method stub
         return null;
     }

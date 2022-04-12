@@ -1,8 +1,17 @@
 package com.challenge;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.challenge.Servicio.Pelicula_SerieService;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "personajes")
@@ -26,22 +35,25 @@ public class Personaje {
     @Column(name="historia", length = 55)
     private String historia;
 
-    //@ManyToMany(mappedBy = "personajes")
-    //@Column (name="ListaPeliculasSeries")
-    //private List<Pelicula_Serie> peliculasyseries;
+    @ManyToMany(mappedBy = "personajes")
+    @JsonBackReference
+    //@JsonIgnore
+    private Set<Pelicula_Serie> peliculasyseries = new HashSet<>();
 
+    //@Autowired
+    //sprivate Pelicula_SerieService pelicula_serieService;
     //constructor
     public Personaje(){
         
     }
     public Personaje(String imagen, String nombre, Integer edad, Double peso, String historia,
-            List<Pelicula_Serie> peliculasyseries) {
+            Set<Pelicula_Serie> peliculasyseries) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.historia = historia;
-        //this.peliculasyseries = peliculasyseries;
+        this.peliculasyseries = peliculasyseries;
     }
 
     //getters and setters
@@ -93,8 +105,17 @@ public class Personaje {
         this.historia = historia;
     }
 
-   /* public List<Pelicula_Serie> getPeliculasyseries() {
+    public Set<Pelicula_Serie> getPeliculasyseries() {
         return peliculasyseries;
+    }
+    public void setPeliculasyseries(Set<Pelicula_Serie> peliculasyseries) {
+        this.peliculasyseries = peliculasyseries;
+    }
+
+    
+    /*
+    public List<Pelicula_Serie> getPeliculasyseries() {
+       return peliculasyseries;
     }
 
     public void setPeliculasyseries(List<Pelicula_Serie> peliculasyseries) {

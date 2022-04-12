@@ -8,6 +8,9 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "peliculas_series")
@@ -31,15 +34,13 @@ public class Pelicula_Serie {
     private Integer genero_fk;
 
     @ManyToMany
-    //@JsonBackReference
+    @JsonManagedReference
     @JoinTable(name = "jnd_Pelicula_Personaje",
             joinColumns = @JoinColumn(name="Pelicula_Serie_fk"),
             inverseJoinColumns = @JoinColumn(name="Personaje_fk"))
-    private List<Personaje> personajes;
+    //@JsonIgnore
+    private Set<Personaje> personajes = new HashSet<>();
 
-
-
- 
 
     //constructor
     public Pelicula_Serie(){
@@ -47,7 +48,7 @@ public class Pelicula_Serie {
     }
     
     public Pelicula_Serie(String imagen, String titulo, Date fechaDeCreacion, Integer calificacion,Integer genero_fk,
-        List<Personaje> personajes) {
+        Set<Personaje> personajes) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.fechaDeCreacion = fechaDeCreacion;
@@ -105,20 +106,21 @@ public class Pelicula_Serie {
         this.genero_fk = genero_fk;
     }
 
-    /*public Set<Personaje> getPersonajes() {
+    public Set<Personaje> getPersonajes() {
         return personajes;
     }
 
     public void setPersonajes(Set<Personaje> personajes) {
         this.personajes = personajes;
-    }  */
+    }  
 
-    public List<Personaje> getPersonajes() {
+    /*public List<Personaje> getPersonajes() {
         return personajes;
     }
     
     public void setPersonajes(List<Personaje> personajes) {
         this.personajes = personajes;
-    }
+    }*/
 
+    
 }

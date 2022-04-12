@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "d4be39b2-5d6a-4079-a1e4-e934f700aad4",
+		"name": "Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:9090/personajes/guardar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {                 \r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Nemo\",\r\n        \"edad\": 4,\r\n        \"peso\": 1,\r\n        \"historia\": \"historia de Nemo prrueba de actualizacion\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/personajes/character?nombre=Spiderman&peso=70",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						"character"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Spiderman"
+						},
+						{
+							"key": "peso",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"calificacion\":7,\r\n        \"imagen\": \"url.imagen\",\r\n        \"titulo\": \"The Spiderman\",\r\n        \"genero_fk\":4,\r\n        \"personajes\":[\r\n                        {\r\n        \"idPersonaje\":2,                 \r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Spiderman\",\r\n        \"edad\": null,\r\n        \"peso\": 75.0,\r\n        \"historia\": \"historia de Spiderman\"\r\n        \r\n    }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/personajes/",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/guardar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Spiderman\",\r\n        \"edad\": null,\r\n        \"peso\": 70.0,\r\n        \"historia\": \"prueba2\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/peliculasyseries",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"peliculasyseries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/detalle/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/personajes/detalle/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						"detalle",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/detalle/2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"edad\": null,\r\n        \"historia\": \"prueba2 de actualizacion\",\r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Spiderman\",\r\n        \"peso\": 70.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/personajes/actualizar/2",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						"actualizar",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/guardar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Spiderman\",\r\n        \"edad\": null,\r\n        \"peso\": 70.0,\r\n        \"historia\": \"prueba2\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/personajes/character?nombre=Spiderman&peso=70",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						"character"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Spiderman"
+						},
+						{
+							"key": "peso",
+							"value": "70"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/personajes/guardar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"imagen\": \"url.imagen\",\r\n        \"nombre\": \"Neo\",\r\n        \"edad\": null,\r\n        \"peso\": 70.0,\r\n        \"historia\": \"prueba2\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/personajes/guardar",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"personajes",
+						"guardar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

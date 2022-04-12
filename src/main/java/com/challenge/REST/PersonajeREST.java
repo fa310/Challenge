@@ -1,8 +1,11 @@
 package com.challenge.REST;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import com.challenge.Personaje;
+import com.challenge.personajeDTO;
 import com.challenge.Servicio.PersonajeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -43,15 +47,29 @@ public class PersonajeREST {
         personajeService.deleteById(id);
     }
 
-    //ACTUALIZAR
+    //ACTUALIZAR PERSONAJE
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<Personaje>actualizar(@RequestBody Personaje personaje,@PathVariable("id") Integer id){
         return ResponseEntity.ok(personajeService.save(personajeService.actualizar(personaje, id)));
     }
 
-    //DETALLE verificar?
+    //DETALLE PERSONAJE
     @GetMapping("/detalle/{id}")
-    private ResponseEntity<Personaje>getPersonaje(@PathVariable("id") Integer id){
-        return ResponseEntity.ok(personajeService.getById(id));
+    private ResponseEntity<Optional<Personaje>> getPersonaje(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(personajeService.findById(id));
     }
+
+    //BUSCAR PERSONAJE POR NOMBRE
+
+    @GetMapping("/character")
+    private ResponseEntity<Set<personajeDTO>> buscarPersonajePorNombre(@RequestParam (name="nombre",defaultValue ="null")String nombre,
+                                                                        @RequestParam (name="peso",defaultValue = "0")Double peso){
+        return ResponseEntity.ok(personajeService.buscarPersonaje(nombre,peso));
+    }
+
+    /*@GetMapping("/character")
+    private ResponseEntity<Set<personajeDTO>> buscarPersonajePorNombre(@RequestParam (name="nombre",defaultValue ="null")String nombre){
+        return ResponseEntity.ok(personajeService.buscarPersonaje(nombre));
+    }*/
+
 }
