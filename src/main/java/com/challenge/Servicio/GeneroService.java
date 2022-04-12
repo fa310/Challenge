@@ -161,10 +161,10 @@ public class GeneroService implements GeneroRepository{
         return null;
     }
 
+    //IMPLEMENTADO
     @Override
     public <S extends Genero> S save(S entity) {
-        // TODO Auto-generated method stub
-        return null;
+        return generoRepository.save(entity);
     }
 
     @Override

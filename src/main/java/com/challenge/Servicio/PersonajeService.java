@@ -27,6 +27,28 @@ public class PersonajeService implements PersonajeRepository{
         return personajeRepository.findAll();
     }
 
+    /*public List<Personaje> findAllByPeliculaSerie(){
+        List<Personaje> personajesRespuesta=null;
+        List<Personaje> personajes = personajeRepository.findAll();
+        for(int i=0; i<personajes.size();i++){
+            if(personajes.get(i).getPeliculasyseries().getId()==id){
+                personajesRespuesta.add(personajes.get(i));
+            }
+        }
+        return personajesRespuesta;
+    }*/
+    //Actualizar Personaje
+    public Personaje actualizar(Personaje personaje,Integer id){
+        Personaje p = personajeRepository.getById(id);
+        p.setEdad(personaje.getEdad());
+        p.setHistoria(personaje.getHistoria());
+        p.setImagen(personaje.getImagen());
+        p.setNombre(personaje.getNombre());
+        p.setPeso(personaje.getPeso());
+
+        return p;
+    }
+
     @Override
     public List<Personaje> findAll(Sort sort) {
         // TODO Auto-generated method stub
@@ -87,10 +109,10 @@ public class PersonajeService implements PersonajeRepository{
         return null;
     }
 
+    //IMPLEMMENTADO
     @Override
     public Personaje getById(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return personajeRepository.getById(id);
     }
 
     @Override
@@ -145,7 +167,6 @@ public class PersonajeService implements PersonajeRepository{
     @Override
     public void deleteById(Integer id) {
         personajeRepository.deleteById(id);
-        
     }
 
     @Override
@@ -160,10 +181,10 @@ public class PersonajeService implements PersonajeRepository{
         return null;
     }
 
+    //Guardar
     @Override
     public <S extends Personaje> S save(S entity) {
-        // TODO Auto-generated method stub
-        return null;
+        return personajeRepository.save(entity);
     }
 
     @Override

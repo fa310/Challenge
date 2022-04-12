@@ -3,10 +3,10 @@ package com.challenge.REST;
 import java.util.List;
 
 import com.challenge.Personaje;
-import com.challenge.Repositorio.PersonajeRepository;
-
+import com.challenge.Servicio.PersonajeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,29 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonajeREST {
     
     @Autowired
-    private PersonajeRepository personajeRepository;
+    private PersonajeService personajeService;
+    
 
     //CREAR PERSONAJE
-    @PostMapping("/guardar")
-    public void guardar(@RequestBody Personaje personaje) {
-        personajeRepository.save(personaje);
+    
+    //CREAR PERSONAJE
+   @PostMapping("/guardar")
+   public ResponseEntity<Personaje>guardar(@RequestBody Personaje personaje) {
+      return ResponseEntity.ok(personajeService.save(personaje));
     }
-
     //LEER PERSONAJE
-    @GetMapping("/listar")
-    public List<Personaje> listar(){
-        return personajeRepository.findAll();
+    @GetMapping
+    private ResponseEntity<List<Personaje>>getAllPersonajes(){
+        return ResponseEntity.ok(personajeService.findAll());
     }
 
     //ELIMINAR PERSONAJE
     @DeleteMapping("/eliminar/{id}")
     public void eliminar(@PathVariable("id") Integer id){
-        personajeRepository.deleteById(id);
+        personajeService.deleteById(id);
     }
 
     //ACTUALIZAR
-    @PutMapping("/actualizar")
-    public void actualizar(@RequestBody Personaje personaje){
-        personajeRepository.save(personaje);
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Personaje>actualizar(@RequestBody Personaje personaje,@PathVariable("id") Integer id){
+        return ResponseEntity.ok(personajeService.save(personajeService.actualizar(personaje, id)));
+    }
+
+    //DETALLE verificar?
+    @GetMapping("/detalle/{id}")
+    private ResponseEntity<Personaje>getPersonaje(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(personajeService.getById(id));
     }
 }

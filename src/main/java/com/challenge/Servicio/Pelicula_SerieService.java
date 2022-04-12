@@ -63,10 +63,10 @@ public class Pelicula_SerieService implements Pelicula_SerieRepository{
         return null;
     }
 
+    //IMPLEMENTADO
     @Override
     public List<Pelicula_Serie> findAllById(Iterable<Integer> ids) {
-        // TODO Auto-generated method stub
-        return null;
+        return pelicula_serieRepository.findAll();
     }
 
     @Override
@@ -75,10 +75,10 @@ public class Pelicula_SerieService implements Pelicula_SerieRepository{
         
     }
 
+    //IMPLEMENTADO
     @Override
     public Pelicula_Serie getById(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return pelicula_serieRepository.getById(id);
     }
 
     @Override
@@ -159,10 +159,10 @@ public class Pelicula_SerieService implements Pelicula_SerieRepository{
         return null;
     }
 
+    //IMPLEMENTADO
     @Override
     public <S extends Pelicula_Serie> S save(S entity) {
-        // TODO Auto-generated method stub
-        return null;
+        return pelicula_serieRepository.save(entity);
     }
 
     @Override

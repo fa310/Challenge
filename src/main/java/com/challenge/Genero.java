@@ -17,7 +17,11 @@ public class Genero {
     @Column(name= "nombre", length = 25)
     private String nombre;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    /*@Column
+    @ElementCollection(targetClass=Integer.class)
+    private List<Integer> listaIdPeliculasSeries;*/
+
+    @OneToMany //(fetch = FetchType.EAGER)
     @JoinColumn(name = "genero_fk")
     private List<Pelicula_Serie> peliculasSeries;
 

@@ -1,9 +1,13 @@
 package com.challenge;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "peliculas_series")
@@ -21,27 +25,34 @@ public class Pelicula_Serie {
     @Column(name="fechaDeCreacion")
     private Date fechaDeCreacion;
     
-    @Column(name="calificacion")
+    @Column(name="calificacion" )
     private Integer calificacion;
 
+    private Integer genero_fk;
+
     @ManyToMany
+    //@JsonBackReference
     @JoinTable(name = "jnd_Pelicula_Personaje",
             joinColumns = @JoinColumn(name="Pelicula_Serie_fk"),
             inverseJoinColumns = @JoinColumn(name="Personaje_fk"))
     private List<Personaje> personajes;
 
 
+
+ 
+
     //constructor
     public Pelicula_Serie(){
 
     }
     
-    public Pelicula_Serie(String imagen, String titulo, Date fechaDeCreacion, Integer calificacion,
-            List<Personaje> personajes) {
+    public Pelicula_Serie(String imagen, String titulo, Date fechaDeCreacion, Integer calificacion,Integer genero_fk,
+        List<Personaje> personajes) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.fechaDeCreacion = fechaDeCreacion;
         this.calificacion = calificacion;
+        this.genero_fk = genero_fk;
         this.personajes = personajes;
     }
 
@@ -86,13 +97,28 @@ public class Pelicula_Serie {
         this.calificacion = calificacion;
     }
 
-    public List<Personaje> getPersonajes() {
+    public Integer getGenero_fk() {
+        return genero_fk;
+    }
+
+    public void setGenero_fk(Integer genero_fk) {
+        this.genero_fk = genero_fk;
+    }
+
+    /*public Set<Personaje> getPersonajes() {
         return personajes;
     }
 
+    public void setPersonajes(Set<Personaje> personajes) {
+        this.personajes = personajes;
+    }  */
+
+    public List<Personaje> getPersonajes() {
+        return personajes;
+    }
+    
     public void setPersonajes(List<Personaje> personajes) {
         this.personajes = personajes;
-    }            
-
+    }
 
 }

@@ -26,9 +26,9 @@ public class Personaje {
     @Column(name="historia", length = 55)
     private String historia;
 
-    @ManyToMany(mappedBy = "personajes")
+    //@ManyToMany(mappedBy = "personajes")
     //@Column (name="ListaPeliculasSeries")
-    private List<Pelicula_Serie> peliculasyseries;
+    //private List<Pelicula_Serie> peliculasyseries;
 
     //constructor
     public Personaje(){
@@ -41,11 +41,11 @@ public class Personaje {
         this.edad = edad;
         this.peso = peso;
         this.historia = historia;
-        this.peliculasyseries = peliculasyseries;
+        //this.peliculasyseries = peliculasyseries;
     }
 
     //getters and setters
-    public Integer getIdPersonaje() {
+    public Integer getIdPersonaje(int i) {
         return idPersonaje;
     }
 
@@ -93,11 +93,11 @@ public class Personaje {
         this.historia = historia;
     }
 
-    public List<Pelicula_Serie> getPeliculasyseries() {
+   /* public List<Pelicula_Serie> getPeliculasyseries() {
         return peliculasyseries;
     }
 
     public void setPeliculasyseries(List<Pelicula_Serie> peliculasyseries) {
         this.peliculasyseries = peliculasyseries;
-    }
+    }*/
 }
